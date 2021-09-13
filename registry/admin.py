@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Environment, Agent
+from .models import Component, ComponentRelease
 
-admin.site.register(Environment)
-admin.site.register(Agent)
+admin.site.register(Component)
+admin.site.register(ComponentRelease)

@@ -2,6 +2,12 @@
 
 A prototype of the AgentOS web service.
 
+## Notes
+
+```
+./manage.py import_registry https://raw.githubusercontent.com/nickjalbert/agentos/nj_leaderboard/registry.yaml
+```
+
 ## Installation and Setup Info
 
 Raw notes from installation and setup:
