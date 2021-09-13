@@ -1,7 +1,5 @@
 # aos_web
 
-# Setup heroku CLI
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 # Create virtual env
 virtualenv -p /usr/bin/python3.9 env
 source env/bin/activate
@@ -32,4 +30,11 @@ postgres=# grant all privileges on database aos_web to aos_web_user;
 python manage.py createsuperuser
 
 
+# Heroku deployment
+# https://medium.com/geekculture/how-to-deploy-a-django-app-on-heroku-4d696b458272
+pip3 install gunicorn dj-database-url whitenoise psycopg2-binary
+# Setup heroku CLI
+curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+# Bunch of settings.py updates from the medium article
+heroku create aos-web
 
