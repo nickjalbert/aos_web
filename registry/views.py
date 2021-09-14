@@ -1,11 +1,15 @@
 from django.http import HttpResponse
-from django.shortcuts import render  # noqa: F401
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
 import yaml
+import json
 
 from .models import Component
 from .models import ComponentRelease
+from .models import Run
 
 
 def index(request):
@@ -43,3 +47,24 @@ def api_components(request):
             releases.append(release_data)
         all_components[component.name] = component_data
     return HttpResponse(yaml.dump(all_components))
+
+
+@csrf_exempt
+def api_runs(request):
+    data = json.loads(request.body)
+    benchmark_data = data["benchmark_data"]
+    agent_data = data["agent_data"]
+    run = Run(benchmark_data=benchmark_data, agent_data=agent_data)
+    run.save()
+    for component in agent_data:
+        component = Component.objects.get(name=component["package_name"])
+        run.components.add(component)
+    return JsonResponse({"run_id": run.id})
+
+
+@csrf_exempt
+def api_tarballs(request, run_id):
+    run = get_object_or_404(Run, pk=run_id)
+    run.tarball = request.FILES["file"]
+    run.save()
+    return HttpResponse("Ok!")

@@ -67,3 +67,10 @@ class ComponentRelease(TimeStampedModel):
     file_path = models.TextField()
     class_name = models.CharField(max_length=200)
     requirements_path = models.TextField()
+
+
+class Run(TimeStampedModel):
+    components = models.ManyToManyField(Component, related_name="runs")
+    benchmark_data = models.JSONField(default=dict)
+    agent_data = models.JSONField(default=dict)
+    tarball = models.FileField(upload_to="tarballs/", null=True)
