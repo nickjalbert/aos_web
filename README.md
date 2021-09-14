@@ -52,4 +52,5 @@ heroku addons:create heroku-postgresql:hobby-dev --app aos-web
 heroku run python manage.py migrate
 heroku run python manage.py createsuperuser
 heroku open
+# set IS_DEPLOY=True on Heroku config vars dashboard (under settings)
 ```

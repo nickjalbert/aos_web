@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Leaderboard</title>
+  </head>
+  <body>
+
+    <h1>AgentOS</h1>
+
+    <h2>Environments</h2>
+    {% if environments %}
+      <ul>
+        {% for environment in environments %}
+          <li>{{ environment.name }} - {{environment.description}}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Environments are available.</p>
+    {% endif %}
+
+    <h2>Agents</h2>
+    {% if agents %}
+      <ul>
+        {% for agent in agents %}
+          <li>{{ agent.name }} - {{ agent.description }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Agents are available.</p>
+    {% endif %}
+
+    <h2>Policies</h2>
+    {% if policies %}
+      <ul>
+        {% for policy in policies %}
+          <li>{{ policy.name }} - {{ policy.description }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Policies are available.</p>
+    {% endif %}
+
+    <h2>Datasets</h2>
+    {% if datasets %}
+      <ul>
+        {% for dataset in datasets %}
+          <li>{{ dataset.name }} - {{ dataset.description }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Datasets are available.</p>
+    {% endif %}
+
+    <h2>Trainers</h2>
+    {% if trainers %}
+      <ul>
+        {% for trainer in trainers %}
+          <li>{{ trainer.name }} - {{ trainer.description }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Trainers are available.</p>
+    {% endif %}
+
+  </body>
+</html>

@@ -26,6 +26,26 @@ class Component(TimeStampedModel):
     component_type = models.CharField(max_length=2, choices=COMPONENT_TYPES)
     description = models.TextField()
 
+    @property
+    def is_environment(self):
+        return self.component_type == Component.ENVIRONMENT
+
+    @property
+    def is_policy(self):
+        return self.component_type == Component.POLICY
+
+    @property
+    def is_agent(self):
+        return self.component_type == Component.AGENT
+
+    @property
+    def is_dataset(self):
+        return self.component_type == Component.DATASET
+
+    @property
+    def is_trainer(self):
+        return self.component_type == Component.TRAINER
+
 
 class ComponentRelease(TimeStampedModel):
     component = models.ForeignKey("Component", on_delete=models.CASCADE)

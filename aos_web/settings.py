@@ -14,6 +14,8 @@ from pathlib import Path
 import dj_database_url
 import os
 
+IS_DEPLOY = bool(os.environ.get("IS_DEPLOY", False))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +29,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if IS_DEPLOY else True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
@@ -36,6 +38,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "registry.apps.RegistryConfig",
+    "leaderboard.apps.LeaderboardConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
