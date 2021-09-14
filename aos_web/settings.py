@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "registry.apps.RegistryConfig",
     "leaderboard.apps.LeaderboardConfig",
+    "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
