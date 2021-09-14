@@ -22,7 +22,7 @@ class Component(TimeStampedModel):
         (DATASET, "DA"),
         (TRAINER, "TR"),
     ]
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     component_type = models.CharField(max_length=2, choices=COMPONENT_TYPES)
     description = models.TextField()
 
