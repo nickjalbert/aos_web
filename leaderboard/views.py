@@ -1,11 +1,13 @@
 from django.shortcuts import render
 
 from registry.models import Component
+from registry.models import Run
 
 
 def index(request):
     components = list(Component.objects.all())
     context = {
+        "runs": Run.objects.all().order_by("-id"),
         "environments": [c for c in components if c.is_environment],
         "agents": [c for c in components if c.is_agent],
         "policies": [c for c in components if c.is_policy],

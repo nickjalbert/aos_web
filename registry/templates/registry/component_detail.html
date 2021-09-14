@@ -3,11 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Component: {{ component.name }}</title>
+    <style type="text/css">
+      .code {
+        background-color: #f0f0f0;
+        color: #0C4B33;
+        font-family: "Fira Mono", Consolas, Menlo, Monaco, "Courier New", Courier, monospace;
+        font-size: 1em;
+        line-height: 1em;
+        padding: .5em;
+      }
+    </style>
   </head>
   <body>
 
     <a href="/">Home</a>
     <h1>Component {{ component.name }}</h1>
+    <h2>Install</h2>
+    <span class="code">$ agentos install {{ component.name }}</span>
+    <h2>Details</h2>
     <ul>
       <li><b>Type:</b> {{ component.component_type_text }}</li>
       <li><b>Description:</b> {{ component.description }}</li>
@@ -39,6 +52,16 @@
         </ul>
       </li>
     </ul>
-
+    <h2>Runs</h2>
+    <ul>
+    {% for run in runs %}
+      <li>
+        {{ run.display_string }}
+        <a href="{% url 'run_detail' run.id %}">
+            details
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
   </body>
 </html>

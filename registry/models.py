@@ -74,3 +74,28 @@ class Run(TimeStampedModel):
     benchmark_data = models.JSONField(default=dict)
     agent_data = models.JSONField(default=dict)
     tarball = models.FileField(upload_to="tarballs/", null=True)
+
+    @property
+    def agent(self):
+        return self.components.get(component_type=Component.AGENT)
+
+    @property
+    def environment(self):
+        return self.components.get(component_type=Component.ENVIRONMENT)
+
+    @property
+    def other_components(self):
+        exclude = [Component.ENVIRONMENT, Component.AGENT]
+        return self.components.exclude(component_type__in=exclude)
+
+    @property
+    def training_transitions(self):
+        return self.benchmark_data["total_training_transitions"]
+
+    @property
+    def display_string(self):
+        return (
+            f"Agent: {self.agent.name}, "
+            f"Environment: {self.environment.name}, "
+            f"Total Training Transitions: {self.training_transitions}"
+        )

@@ -22,8 +22,17 @@ def index(request):
 
 def component_detail(request, component_id):
     component = get_object_or_404(Component, pk=component_id)
-    context = {"component": component}
+    context = {
+        "runs": Run.objects.filter(components=component).order_by("-id"),
+        "component": component,
+    }
     return render(request, "registry/component_detail.html", context)
+
+
+def run_detail(request, run_id):
+    run = get_object_or_404(Run, pk=run_id)
+    context = {"run": run}
+    return render(request, "registry/run_detail.html", context)
 
 
 def api_components(request):

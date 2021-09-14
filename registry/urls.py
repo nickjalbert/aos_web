@@ -12,6 +12,9 @@ urlpatterns = [
         name="api_tarballs",
     ),
     path(
-        "<int:component_id>/", views.component_detail, name="component_detail"
+        "components/<int:component_id>/",
+        views.component_detail,
+        name="component_detail",
     ),
+    path("runs/<int:run_id>/", views.run_detail, name="run_detail"),
 ]

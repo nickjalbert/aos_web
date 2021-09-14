@@ -8,7 +8,23 @@
 
     <h1>AgentOS</h1>
 
-    <h2>Environments</h2>
+    <h2> Benchmarking Runs </h2>
+
+    <ul>
+    {% for run in runs %}
+      <li>
+        {{ run.display_string }}
+        <a href="{% url 'run_detail' run.id %}">
+            details
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+    
+
+    <h2> Component Registry </h2>
+
+    <h3>Environments</h3>
     {% if environments %}
       <ul>
         {% for environment in environments %}
@@ -23,7 +39,7 @@
       <p>No Environments are available.</p>
     {% endif %}
 
-    <h2>Agents</h2>
+    <h3>Agents</h3>
     {% if agents %}
       <ul>
         {% for agent in agents %}
@@ -38,7 +54,7 @@
       <p>No Agents are available.</p>
     {% endif %}
 
-    <h2>Policies</h2>
+    <h3>Policies</h3>
     {% if policies %}
       <ul>
         {% for policy in policies %}
@@ -53,7 +69,7 @@
       <p>No Policies are available.</p>
     {% endif %}
 
-    <h2>Datasets</h2>
+    <h3>Datasets</h3>
     {% if datasets %}
       <ul>
         {% for dataset in datasets %}
@@ -68,7 +84,7 @@
       <p>No Datasets are available.</p>
     {% endif %}
 
-    <h2>Trainers</h2>
+    <h3>Trainers</h3>
     {% if trainers %}
       <ul>
         {% for trainer in trainers %}
