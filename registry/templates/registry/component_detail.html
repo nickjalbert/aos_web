@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Component: {{ component.name }}</title>
+  </head>
+  <body>
+
+    <a href="/">Home</a>
+    <h1>Component {{ component.name }}</h1>
+    <ul>
+      <li><b>Type:</b> {{ component.component_type_text }}</li>
+      <li><b>Description:</b> {{ component.description }}</li>
+      <li>
+        <b>Releases:</b>
+        <ul>
+          {% for release in component.releases.all %}
+            <li>{{ release.name }}</li>
+              <ul>
+                  <li>
+                    <b>Github URL:</b>
+                    <a href="{{ release.github_url }}">
+                      {{ release.github_url }}
+                    </a>
+                  </li>
+                  <li>
+                    <b>Git Hash:</b>
+                    <a href="{{release.github_url}}/tree/{{release.git_hash}}">
+                      {{ release.git_hash }}
+                    </a>
+                  </li>
+                  <li><b>File Path:</b> {{ release.file_path }}</li>
+                  <li><b>Class Name:</b> {{ release.class_name }}</li>
+                  <li>
+                    <b>Requirements Path:</b> {{ release.requirements_path }}
+                  </li>
+              </ul>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+
+  </body>
+</html>

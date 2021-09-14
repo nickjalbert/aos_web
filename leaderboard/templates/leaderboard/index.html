@@ -12,7 +12,11 @@
     {% if environments %}
       <ul>
         {% for environment in environments %}
-          <li>{{ environment.name }} - {{environment.description}}</li>
+          <li>
+            <a href="{% url 'component_detail' environment.id %}">
+              {{ environment.name }}
+            </a>
+            - {{environment.description}}</li>
         {% endfor %}
       </ul>
     {% else %}
@@ -23,7 +27,11 @@
     {% if agents %}
       <ul>
         {% for agent in agents %}
-          <li>{{ agent.name }} - {{ agent.description }}</li>
+          <li>
+            <a href="{% url 'component_detail' agent.id %}">
+              {{ agent.name }}
+            </a>
+            - {{ agent.description }}</li>
         {% endfor %}
       </ul>
     {% else %}
@@ -34,7 +42,11 @@
     {% if policies %}
       <ul>
         {% for policy in policies %}
-          <li>{{ policy.name }} - {{ policy.description }}</li>
+          <li>
+            <a href="{% url 'component_detail' policy.id %}">
+              {{ policy.name }}
+            </a>
+            - {{ policy.description }}</li>
         {% endfor %}
       </ul>
     {% else %}
@@ -45,7 +57,11 @@
     {% if datasets %}
       <ul>
         {% for dataset in datasets %}
-          <li>{{ dataset.name }} - {{ dataset.description }}</li>
+          <li>
+            <a href="{% url 'component_detail' dataset.id %}">
+              {{ dataset.name }}
+            </a>
+            - {{ dataset.description }}</li>
         {% endfor %}
       </ul>
     {% else %}
@@ -56,7 +72,11 @@
     {% if trainers %}
       <ul>
         {% for trainer in trainers %}
-          <li>{{ trainer.name }} - {{ trainer.description }}</li>
+          <li>
+            <a href="{% url 'component_detail' trainer.id %}">
+              {{ trainer.name }}
+            </a>
+            - {{ trainer.description }}</li>
         {% endfor %}
       </ul>
     {% else %}

@@ -46,9 +46,21 @@ class Component(TimeStampedModel):
     def is_trainer(self):
         return self.component_type == Component.TRAINER
 
+    @property
+    def component_type_text(self):
+        return {
+            Component.ENVIRONMENT: "Environment",
+            Component.POLICY: "Policy",
+            Component.AGENT: "Agent",
+            Component.DATASET: "Dataset",
+            Component.TRAINER: "Trainer",
+        }[self.component_type]
+
 
 class ComponentRelease(TimeStampedModel):
-    component = models.ForeignKey("Component", on_delete=models.CASCADE)
+    component = models.ForeignKey(
+        "Component", on_delete=models.CASCADE, related_name="releases"
+    )
     name = models.CharField(max_length=200)
     git_hash = models.CharField(max_length=200)
     github_url = models.CharField(max_length=200)
