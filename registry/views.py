@@ -72,8 +72,19 @@ def api_runs(request):
 
 
 @csrf_exempt
-def api_tarballs(request, run_id):
+def api_tarball(request, run_id):
     run = get_object_or_404(Run, pk=run_id)
     run.tarball = request.FILES["file"]
     run.save()
     return HttpResponse("Ok!")
+
+
+def run_tarball(request, run_id):
+    run = get_object_or_404(Run, pk=run_id)
+    response = HttpResponse(
+        run.tarball.read(), content_type="application/tar.gz"
+    )
+    response[
+        "Content-Disposition"
+    ] = f"attachment; filename=run{run_id}.tar.gz"
+    return response
