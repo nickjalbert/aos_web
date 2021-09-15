@@ -6,6 +6,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block head_title %}{% endblock head_title %}</title>
+
+    <style type="text/css">
+      .no-fouc {display: none;}
+    </style>
+    
+    <script type="text/javascript">
+      // https://gist.github.com/johnpolacek/3827270
+      document.documentElement.className = 'no-fouc';
+
+      // https://youmightnotneedjquery.com/#ready
+      function ready(fn) {
+        if (document.readyState != 'loading'){
+          fn();
+        } else {
+          document.addEventListener('DOMContentLoaded', fn);
+        }
+      }
+      function show_content() {
+        // add to document ready: $('.no-fouc').removeClass('no-fouc');
+        document.documentElement.classList.remove('no-fouc');
+        const $logoImg = Array.prototype.slice.call(document.querySelectorAll('#agentos-logo-img'), 0)[0];
+        $logoImg.style.display = 'block';
+      }
+      ready(show_content);
+    </script>
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style type="text/css">
       .code {
@@ -53,7 +80,12 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://agentos.org">
-        <img src="{% static 'leaderboard/aos-logo.png' %}" alt="AgentOS Logo">
+        <img
+          src="{% static 'leaderboard/aos-logo.png' %}"
+          alt="AgentOS Logo"
+          style="display:none;"
+          id="agentos-logo-img"
+        >
       </a>
   
       <a
