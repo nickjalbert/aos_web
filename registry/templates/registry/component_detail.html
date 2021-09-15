@@ -1,58 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Component: {{ component.name }}</title>
-    <style type="text/css">
-      .code {
-        background-color: #f0f0f0;
-        color: #0C4B33;
-        font-family: "Fira Mono", Consolas, Menlo, Monaco, "Courier New", Courier, monospace;
-        font-size: 1em;
-        line-height: 1em;
-        padding: .5em;
-      }
-    </style>
-  </head>
-  <body>
+{% extends "base.html" %}
 
-    <a href="/">Home</a>
-    <h1>Component {{ component.name }}</h1>
-    <h2>Install</h2>
+{% block head_title %}
+  Component: {{ component.name }}
+{% endblock head_title %}
+
+{% block container %}
+  <div class='title'>Component {{ component.name }}</div>
+{% endblock container %}
+
+{% block content %}
+  <div class="content">
+    <h4>Install</h4>
     <span class="code">$ agentos install {{ component.name }}</span>
-    <h2>Details</h2>
+  </div>
+
+  <div class="content">
+    <h4>Details</h4>
     <ul>
-      <li><b>Type:</b> {{ component.component_type_text }}</li>
-      <li><b>Description:</b> {{ component.description }}</li>
+      <li><strong>Type:</strong> {{ component.component_type_text }}</li>
+      <li><strong>Description:</strong> {{ component.description }}</li>
       <li>
-        <b>Releases:</b>
+        <strong>Releases:</strong>
         <ul>
           {% for release in component.releases.all %}
             <li>{{ release.name }}</li>
               <ul>
                   <li>
-                    <b>Github URL:</b>
+                    <strong>Github URL:</strong>
                     <a href="{{ release.github_url }}">
                       {{ release.github_url }}
                     </a>
                   </li>
                   <li>
-                    <b>Git Hash:</b>
+                    <strong>Git Hash:</strong>
                     <a href="{{release.github_url}}/tree/{{release.git_hash}}">
                       {{ release.git_hash }}
                     </a>
                   </li>
-                  <li><b>File Path:</b> {{ release.file_path }}</li>
-                  <li><b>Class Name:</b> {{ release.class_name }}</li>
+                  <li><strong>File Path:</strong> {{ release.file_path }}</li>
+                  <li><strong>Class Name:</strong> {{ release.class_name }}</li>
                   <li>
-                    <b>Requirements Path:</b> {{ release.requirements_path }}
+                    <strong>Requirements Path:</strong> {{ release.requirements_path }}
                   </li>
               </ul>
           {% endfor %}
         </ul>
       </li>
     </ul>
-    <h2>Runs</h2>
+  </div>
+
+  <div class="content">
+    <h4>Runs</h4>
     <ul>
     {% for run in runs %}
       <li>
@@ -63,5 +61,6 @@
       </li>
     {% endfor %}
     </ul>
-  </body>
-</html>
+  </div>
+
+{% endblock content %}

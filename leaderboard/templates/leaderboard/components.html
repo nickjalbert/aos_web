@@ -1,53 +1,15 @@
 {% extends "base.html" %}
 
 {% block head_title %}
-  AgentOS Web Services
+  AgentOS Component Registry
 {% endblock head_title %}
 
 {% block container %}
-  <div class='title'>AgentOS Web Services</div>
+  <div class='title'>AgentOS Component Registry</div>
 {% endblock container %}
 
 {% block content %}
   <div class="content">
-    <h4> Benchmarking Runs </h4>
-
-    <ul>
-      {% for run in runs %}
-        <li>
-          <ul style="list-style-type:none;">
-            <li>
-              <span>Agent:</span> 
-              <span style="font-weight:200;">
-                {{ run.agent.name }}
-              </span>
-            </li>
-            <li>
-              <span>Environment:</span>
-              <span style="font-weight:200;">
-                {{ run.environment.name }}
-              </span>
-            </li>
-            <li>
-              <span>Training Transitions:</span>
-              <span style="font-weight:200;">
-                {{ run.training_transitions }}
-              </span>
-            </li>
-            <li>
-              <a href="{% url 'run_detail' run.id %}">Details</a>
-            </li>
-          </ul>
-        </li>
-      {% endfor %}
-    </ul>
-    
-  </div>
-
- 
-  <div class="content">
-    <h4> Component Registry </h4>
-
     <strong>Environments</strong>
     {% if environments %}
       <ul>
