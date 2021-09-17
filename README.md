@@ -1,7 +1,12 @@
 # AgentOS Web
 
 A prototype of the AgentOS web service. Related
-[discussion](https://github.com/agentos-project/agentos/discussions/139)
+[discussion](https://github.com/agentos-project/agentos/discussions/139).
+
+Designed to be run in tandem with the the AgentOS code in the `nj_leaderboard`
+branch of this [AgentOS
+fork](https://github.com/nickjalbert/agentos/tree/nj_leaderboard)
+
 
 ## Set up a local version
 
