@@ -1,6 +1,29 @@
 # AgentOS Web
 
-A prototype of the AgentOS web service.
+A prototype of the AgentOS web service. Related
+[discussion](https://github.com/agentos-project/agentos/discussions/139)
+
+## Set up a local version
+
+Built with Python 3.9 and Postgres 12.8.
+
+```
+git clone git@github.com:nickjalbert/aos_web.git
+cd aos_web
+virtualenv -p /usr/bin/python3.9 env
+source env/bin/activate
+pip install -r requirements.txt
+# Create postgres database aos_web with aos_web_user with pwd aabbccdd:
+sudo service postgresql start
+sudo -u postgres psql
+create database aos_web;
+create user aos_web_user with encrypted password 'aabbccdd';
+grant all privileges on database aos_web to aos_web_user;
+./manage.py migrate
+./manage.py runserver
+# navigate to http://localhost:8000
+
+```
 
 ## Notes
 
@@ -11,6 +34,7 @@ A prototype of the AgentOS web service.
 ## Installation and Setup Info
 
 Raw notes from installation and setup:
+
 
 ```
 # Create virtual env
