@@ -12,7 +12,7 @@ fork](https://github.com/nickjalbert/agentos/tree/nj_leaderboard)
 
 Built with Python 3.9 and Postgres 12.8.
 
-```
+```bash
 git clone git@github.com:nickjalbert/aos_web.git
 cd aos_web
 virtualenv -p /usr/bin/python3.9 env
@@ -32,7 +32,7 @@ grant all privileges on database aos_web to aos_web_user;
 
 ## Notes
 
-```
+```bash
 ./manage.py import_registry https://raw.githubusercontent.com/nickjalbert/agentos/nj_leaderboard/registry.yaml
 ```
 
@@ -41,7 +41,7 @@ grant all privileges on database aos_web to aos_web_user;
 Raw notes from installation and setup:
 
 
-```
+```bash
 # Create virtual env
 virtualenv -p /usr/bin/python3.9 env
 source env/bin/activate
